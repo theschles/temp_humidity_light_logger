@@ -1,18 +1,12 @@
-/**
- * Blink
- *
- * Turns on an LED on for one second,
- * then off for one second, repeatedly.
- */
+#include "serialHelper.h"
+#include "wifiHelper.h"
 #include "Arduino.h"
 
 void setup() {
-  pinMode(0, OUTPUT);
+  setupSerial();
+  setupWiFi();
 }
 
 void loop() {
-  digitalWrite(0, HIGH);
-  delay(250);
-  digitalWrite(0, LOW);
-  delay(250);
+  uploadDataToCloud();
 }

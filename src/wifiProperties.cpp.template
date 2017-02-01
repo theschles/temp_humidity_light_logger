@@ -1,0 +1,27 @@
+//Rename me to wifiProperties.cpp
+
+#include "Arduino.h"
+
+#ifndef WIFI_SSID
+#define WIFI_SSID "WIFI SSID"
+#endif
+
+#ifndef WIFI_PASSWORD
+#define WIFI_PASSWORD "WIFI PASSWORD"
+#endif
+
+#ifndef DATA_DESTINATION_HOST
+#define DATA_DESTINATION_HOST "www.example.com"
+#endif
+
+#ifndef DATA_DESTINATION_PORT
+#define DATA_DESTINATION_PORT 80
+#endif
+
+#ifndef MSECS_DELAY_BETWEEN_DATA_TRANSFERS
+#define MSECS_DELAY_BETWEEN_DATA_TRANSFERS 5000
+#endif
+
+#ifndef DATA_DESTINATION_PATH
+#define DATA_DESTINATION_PATH "/"
+#endif
