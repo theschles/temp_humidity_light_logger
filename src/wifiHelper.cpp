@@ -47,9 +47,17 @@ void pauseBeforeTransferring() {
   delay(MSECS_DELAY_BETWEEN_DATA_TRANSFERS);
 }
 
-void describeToWhereSendingData(float& temp, float& rh) {
+void describePlannedDataTransmission(float& temp, float& rh, int& vcc) {
   if (isWifiDebug()) {
-    String debugOutput = String("connecting to ") + DATA_DESTINATION_HOST + "\nSending temp: " + temp;
+    String debugOutput = String("Connecting to '")
+      + DATA_DESTINATION_HOST
+      + "'; sending temp: '"
+      + temp
+      + "'; rh: '"
+      + rh
+      + "'; vcc: '"
+      + vcc
+      + "'";
     Serial.println(debugOutput);
   }
 }
@@ -70,7 +78,7 @@ String buildConnectionString() {
 
 void debugConnectionPath() {
   if (isWifiDebug()) {
-    String debugOutput = String("Requesting path: ")+DATA_DESTINATION_PATH;
+    String debugOutput = String("Requesting path: ") + DATA_DESTINATION_PATH;
     Serial.println(debugOutput);
   }
 }
@@ -90,10 +98,10 @@ void printResponseFromCloud() {
   }
 }
 
-bool uploadDataToCloud(float& temp, float& rh) {
+bool uploadDataToCloud(float& temp, float& rh, int& vcc) {
   bool success = false;
   pauseBeforeTransferring();
-  describeToWhereSendingData(temp, rh);
+  describePlannedDataTransmission(temp, rh, vcc);
   if (isCloudConnectionSuccess()) {
       debugConnectionPath();
       sendRequestToCloud();
