@@ -3,4 +3,10 @@
 .clang_complete
 .gcc-flags.json
 
-src/wifiProperties.cpp
+src/wifiProperties*.cpp
+
+.idea/
+
+cmake-build-debug/
+
+CMakeLists.txt

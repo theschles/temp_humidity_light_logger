@@ -14,8 +14,8 @@ bool isWifiDebug() {
 
 void printInitialWifiConnectionDescription() {
   if (isWifiDebug()) {
-    Serial.print("\n\nConnecting to ");
-    Serial.println(WIFI_SSID);
+    String debugOutput = String("\n\nConnecting to ") + WIFI_SSID;
+    Serial.println(debugOutput);
   }
 }
 
@@ -24,16 +24,16 @@ void connectToWifi() {
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     if (isWifiDebug()) {
-      Serial.print(".");
+      String debugOutput = String("Still trying to connect to ") + WIFI_SSID;
+      Serial.println(debugOutput);
     }
   }
 }
 
 void printWifiConnectionDetails() {
   if (isWifiDebug()) {
-    Serial.println("\nWiFi connected");
-    Serial.println("IP address: ");
-    Serial.println(WiFi.localIP());
+    String debugOutput = String("\nWiFi connected to IP address: ") + WiFi.localIP();
+    Serial.println(debugOutput);
   }
 }
 
@@ -47,10 +47,10 @@ void pauseBeforeTransferring() {
   delay(MSECS_DELAY_BETWEEN_DATA_TRANSFERS);
 }
 
-void describeToWhereSendingData() {
+void describeToWhereSendingData(float& temp, float& rh) {
   if (isWifiDebug()) {
-    Serial.print("connecting to ");
-    Serial.println(DATA_DESTINATION_HOST);
+    String debugOutput = String("connecting to ") + DATA_DESTINATION_HOST + "\nSending temp: " + temp;
+    Serial.println(debugOutput);
   }
 }
 
@@ -70,8 +70,8 @@ String buildConnectionString() {
 
 void debugConnectionPath() {
   if (isWifiDebug()) {
-    Serial.print("Requesting path: ");
-    Serial.println(DATA_DESTINATION_PATH);
+    String debugOutput = String("Requesting path: ")+DATA_DESTINATION_PATH;
+    Serial.println(debugOutput);
   }
 }
 
@@ -90,10 +90,10 @@ void printResponseFromCloud() {
   }
 }
 
-bool uploadDataToCloud() {
+bool uploadDataToCloud(float& temp, float& rh) {
   bool success = false;
   pauseBeforeTransferring();
-  describeToWhereSendingData();
+  describeToWhereSendingData(temp, rh);
   if (isCloudConnectionSuccess()) {
       debugConnectionPath();
       sendRequestToCloud();
