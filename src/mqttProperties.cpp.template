@@ -1,0 +1,19 @@
+//Rename me to mqttProperties.cpp
+
+#include "Arduino.h"
+
+#ifndef AIO_SERVER
+#define AIO_SERVER "io.adafruit.com" // default AIO server for Adafruit IO
+#endif
+
+#ifndef AIO_SERVERPORT
+#define AIO_SERVERPORT 1883 // default AIO port for Adafruit IO
+#endif
+
+#ifndef AIO_USERNAME
+#define AIO_USERNAME "AIO USERNAME"
+#endif
+
+#ifndef AIO_KEY
+#define AIO_KEY "AIO KEY"
+#endif

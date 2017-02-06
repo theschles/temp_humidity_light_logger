@@ -10,3 +10,5 @@ src/wifiProperties*.cpp
 cmake-build-debug/
 
 CMakeLists.txt
+
+src/mqttProperties*.cpp

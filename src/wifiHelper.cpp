@@ -83,7 +83,7 @@ void debugConnectionPath() {
   }
 }
 
-void sendRequestToCloud() {
+void sendRequestToCloud(float& temp, float& rh, int& vcc) {
   client.print(buildConnectionString());
   delay(10);
 }
@@ -98,13 +98,17 @@ void printResponseFromCloud() {
   }
 }
 
-bool uploadDataToCloud(float& temp, float& rh, int& vcc) {
-  bool success = false;
+void debugBeforeTransmitting(float& temp, float& rh, int& vcc) {
   pauseBeforeTransferring();
   describePlannedDataTransmission(temp, rh, vcc);
+}
+
+bool uploadDataToCloud(float& temp, float& rh, int& vcc) {
+  bool success = false;
+  debugBeforeTransmitting(temp, rh, vcc);
   if (isCloudConnectionSuccess()) {
       debugConnectionPath();
-      sendRequestToCloud();
+      sendRequestToCloud(temp, rh, vcc);
       printResponseFromCloud();
       success = true;
   } else {
